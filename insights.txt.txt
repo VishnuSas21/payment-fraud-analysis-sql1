@@ -1,0 +1,37 @@
+1. Stripe shows the highest failure rate among all gateways, with ~5% higher failures compared to others.
+
+2. This deviation suggests a gateway-specific issue rather than random transaction failures.
+
+3. Time-based and hourly contribution analysis show that failures are distributed across all time intervals without a clear concentration in specific hours.
+
+4. The absence of sharp spikes or high-impact time windows indicates that the issue is not driven by a temporary outage or time-based anomaly.
+
+5. Instead, the pattern suggests a consistent, systemic behavior affecting Stripe transactions.
+
+6. Possible causes include:
+   - Stricter authorization rules leading to higher decline rates
+   - Increased rejection rates from issuing banks for this gateway
+   - Risk-based filtering or fraud controls applied at gateway level
+   - Configuration or routing issues affecting Stripe transactions
+
+7. In contrast, Razorpay and PayU show relatively stable performance with only occasional spikes, reinforcing that the issue is likely isolated to Stripe.
+
+8. Recommended next steps for validation:
+   - Analyze failure reason codes from gateway responses
+   - Compare bank-level approval rates across gateways
+   - Review transaction routing logic (e.g., high-risk traffic allocation)
+
+9. Certain users exhibit a high number of failed transactions, indicating potential card testing or fraudulent behavior.
+
+10. High failure rates at user level suggest repeated authorization attempts, which is a common indicator of fraud or bot-driven activity.
+11. Users performing multiple transactions within short time intervals indicate abnormal transaction velocity, which is a strong fraud indicator.
+
+12. Such patterns may represent bot activity or automated card testing attempts.
+13. Certain merchants show significantly higher failure rates, which may indicate integration issues or higher exposure to fraudulent transactions.
+
+14. Merchant-level anomalies should be further investigated for transaction patterns and customer behavior.
+15. A rule-based fraud scoring model was implemented using transaction patterns such as failure rate, transaction volume, and velocity.
+
+16. Users with high velocity (multiple transactions within short intervals) and high failure rates were assigned higher risk scores.
+
+17. This approach helps prioritize high-risk users for further investigation and mimics real-world fraud detection systems.
